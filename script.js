@@ -1,35 +1,39 @@
 const addPlantBtn = document.getElementById('add-plant');
 const waterBtn = document.getElementById('water');
+const soilPatch = document.getElementById('patch');
 const garden = document.querySelector('main');
 
 const flowers = [];
 
 const plantNew = () => {
-    if (flowers.length > 35) {
-        let tooMany = document.createElement('p')
-        tooMany.innerText = `Sorry folks, that's your limit.`
-        garden.appendChild(tooMany);
-        setInterval(() => {
-            garden.removeChild(tooMany);
-        }, 3000);
+    if (flowers.length > 17) {
+        // let tooMany = document.createElement('p')
+        // tooMany.innerText = `Sorry folks, that's your limit.`
+        // garden.appendChild(tooMany);
+        // setInterval(() => {
+        //     garden.removeChild(tooMany);
+        // }, 3000);
+        addPlantBtn.innerText = `Sorry folks, that's your limit.`
     } else {
     let newFlower = document.createElement('img')
-    newFlower.src = 'mound.png';
-    garden.appendChild(newFlower);
+    newFlower.classList.add('inSoil');
+    newFlower.src = 'images/mound.png';
+    soilPatch.appendChild(newFlower);
     flowers.push(newFlower);
     setTimeout(() => {
-        newFlower.src = 'sapling.png';
+        newFlower.src = 'images/sapling.png';
         setTimeout(() => {
-            newFlower.src = 'earlybud.png';
+            newFlower.src = 'images/earlybud.png';
             setTimeout(() => {
-                newFlower.src = 'latebud.png';
+                newFlower.src = 'images/latebud.png';
                 setTimeout(() => {
-                    newFlower.src = colorPick() + 'flower.png';
+                    newFlower.src = 'images/' + colorPick() + 'flower.png';
                 }, 2000);
             }, 2000);
         }, 2000);
     }, 2000);}
 };
+
 
 const colorPick = () => {
     let colors = ['red', 'blue', 'orange'];
@@ -42,13 +46,13 @@ const colorPick = () => {
 const wiltFlower = () => {
     for (i = 0; i < flowers.length; i++) {
         if (flowers[i].src.includes('red')){
-            flowers[i].src = 'wiltedredflower.png';
+            flowers[i].src = 'images/wiltedredflower.png';
         }
         if (flowers[i].src.includes('blue')){
-            flowers[i].src = 'wiltedblueflower.png';
+            flowers[i].src = 'images/wiltedblueflower.png';
         }
         if (flowers[i].src.includes('orange')){
-            flowers[i].src = 'wiltedorangeflower.png';
+            flowers[i].src = 'images/wiltedorangeflower.png';
         }
     }
 };
@@ -56,13 +60,13 @@ const wiltFlower = () => {
 const waterFlower = () => {
     for (i = 0; i < flowers.length; i++) {
         if (flowers[i].src.includes('wiltedred')){
-            flowers[i].src = 'redflower.png';
+            flowers[i].src = 'images/redflower.png';
         }
         if (flowers[i].src.includes('wiltedblue')){
-            flowers[i].src = 'blueflower.png';
+            flowers[i].src = 'images/blueflower.png';
         }
         if (flowers[i].src.includes('wiltedorange')){
-            flowers[i].src = 'orangeflower.png';
+            flowers[i].src = 'images/orangeflower.png';
         }
     }
 };
@@ -72,4 +76,4 @@ waterBtn.addEventListener('click', waterFlower);
 
 setInterval(() => {
     wiltFlower();
-}, 9000);
+}, 12000);
