@@ -45,13 +45,14 @@ const colorPick = () => {
 
 const wiltFlower = () => {
     for (i = 0; i < flowers.length; i++) {
-        if (flowers[i].src.includes('red')){
+        let randomNum = Math.floor(Math.random() * 3);
+        if (flowers[i].src.includes('red') && randomNum === 0){
             flowers[i].src = 'images/wiltedredflower.png';
         }
-        if (flowers[i].src.includes('blue')){
+        if (flowers[i].src.includes('blue') && randomNum === 0){
             flowers[i].src = 'images/wiltedblueflower.png';
         }
-        if (flowers[i].src.includes('orange')){
+        if (flowers[i].src.includes('orange') && randomNum === 0){
             flowers[i].src = 'images/wiltedorangeflower.png';
         }
     }
@@ -76,4 +77,4 @@ waterBtn.addEventListener('click', waterFlower);
 
 setInterval(() => {
     wiltFlower();
-}, 12000);
+}, 5000);
